@@ -1,0 +1,36 @@
+[project]
+name = "dropatlas"
+version = "0.1.0"
+description = "A lakehouse that maps the melodic bass scene from Discogs and ListenBrainz dumps"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pyarrow>=17",
+    "requests>=2.32",
+    "zstandard>=0.23",
+]
+
+[project.scripts]
+dropatlas = "dropatlas.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6", "pre-commit>=3.8"]
+dbt = ["dbt-databricks>=1.10"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 110
+# Databricks notebooks get these for free; tell ruff they exist.
+builtins = ["spark", "dbutils", "display"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Data never goes in Git: it lives in the Databricks volume.
+data/
+landing/
+*.part
+
+# dbt and Databricks working files
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+.databricks/
